@@ -1,0 +1,119 @@
+<?xml version="1.0" encoding="utf-8"?>
+<layout xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:android="http://schemas.android.com/apk/res/android">
+    <data>
+        <variable
+            name="viewModel"
+            type="com.montismobile.booklibrary.bookdetail.BookViewModel" />
+    </data>
+    <ScrollView
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:fillViewport="true">
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="vertical"
+            android:layout_margin= "20dp">
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="horizontal"
+                android:layout_marginStart="16dp"
+                android:layout_marginTop="16dp">
+                <LinearLayout
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:orientation="vertical">
+                    <ImageView
+                        android:id="@+id/book_photo"
+                        android:layout_width="150dp"
+                        android:layout_height="120dp"
+                        android:scaleType="fitCenter"
+                        android:cropToPadding = "true"
+                        android:background="@android:color/background_light"
+                        app:imageAddress="@{viewModel.bookLiveData}"/>
+                </LinearLayout>
+                <LinearLayout
+                    android:orientation="vertical"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="1">
+
+                    <TextView
+                        style="?android:listSeparatorTextViewStyle"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:text="@string/book_title_label"
+                        android:textStyle="bold" />
+                <EditText
+                    android:id = "@+id/book_title_edittext"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:text="@{viewModel.bookLiveData.title}"/>
+                </LinearLayout>
+            </LinearLayout>
+
+            <TextView
+                style="?android:listSeparatorTextViewStyle"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:text="@string/book_writer_label"
+                android:textStyle="bold" />
+            <EditText
+                android:id = "@+id/book_writer_edittext"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:text="@{viewModel.bookLiveData.writer}"/>
+
+            <TextView
+                style="?android:listSeparatorTextViewStyle"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:text="@string/book_notes_label"
+                android:textStyle="bold" />
+            <EditText
+                android:id = "@+id/book_notes_edittext"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:text="@{viewModel.bookLiveData.notes}"/>
+
+            <TextView
+                style="?android:listSeparatorTextViewStyle"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:text="@string/isbn"
+                android:textStyle="bold" />
+            <EditText
+                android:id="@+id/book_isbn_edittext"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginEnd="4dp"
+                android:text="@{viewModel.bookLiveData.isbn}"
+                />
+            <Button
+                android:id="@+id/get_isbn_button"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:text="@string/get_ISBN"/>
+
+            <TextView
+                style="?android:listSeparatorTextViewStyle"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:text="@string/book_date_of_buy_label"
+                android:textStyle="bold" />
+            <Button
+                android:id = "@+id/book_date_button"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                app:formattedDate="@{viewModel.bookLiveData.dateOfBuy}"/>
+            <Button
+                android:id="@+id/book_save_button"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginBottom="20dp"
+                android:text="@string/save"/>
+        </LinearLayout>
+    </ScrollView>
+</layout>

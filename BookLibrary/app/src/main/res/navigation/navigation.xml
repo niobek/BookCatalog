@@ -1,0 +1,114 @@
+<?xml version="1.0" encoding="utf-8"?>
+<navigation xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:id="@+id/navigation"
+    app:startDestination="@id/bookListFragment">
+
+    <fragment
+        android:id="@+id/bookListFragment"
+        android:name="com.montismobile.booklibrary.catalog.BookListFragment"
+        android:label="BookListFragment" >
+        <action
+            android:id="@+id/action_bookListFragment_to_bookFragment"
+            app:destination="@id/bookFragment"
+            app:popUpTo="@id/bookListFragment"
+            app:popUpToInclusive="false" />
+        <action
+            android:id="@+id/action_bookListFragment_to_searchFragment"
+            app:destination="@id/searchFragment"
+            app:popUpTo="@id/bookListFragment" />
+        <argument
+            android:name="filter"
+            app:argType="boolean"
+            android:defaultValue="false" />
+        <argument
+            android:name="writer"
+            app:argType="string"
+            android:defaultValue=""/>
+        <argument
+            android:name="isbn"
+            app:argType="string"
+            android:defaultValue=""/>
+        <argument
+            android:name="title"
+            app:argType="string"
+            android:defaultValue=""/>
+    </fragment>
+    <fragment
+        android:id="@+id/bookFragment"
+        android:name="com.montismobile.booklibrary.bookdetail.BookFragment"
+        android:label="BookFragment" >
+        <action
+            android:id="@+id/action_bookFragment_to_bookListFragment"
+            app:destination="@id/bookListFragment" />
+        <action
+            android:id="@+id/action_bookFragment_to_getISBNFragment"
+            app:destination="@id/getISBNFragment" />
+        <argument
+            android:name="isbnNumber"
+            app:argType="string"
+            android:defaultValue="" />
+        <argument
+            android:name="bookId"
+            app:argType="string"
+            android:defaultValue="" />
+    </fragment>
+    <fragment
+        android:id="@+id/searchFragment"
+        android:name="com.montismobile.booklibrary.search.SearchFragment"
+        android:label="SearchFragment" >
+        <action
+            android:id="@+id/action_searchFragment_to_searchWithISBNFragment"
+            app:destination="@id/searchWithISBNFragment" />
+        <action
+            android:id="@+id/action_searchFragment_to_searchWithTitleFragment"
+            app:destination="@id/searchWithTitleFragment" />
+        <action
+            android:id="@+id/action_searchFragment_to_searchWithWriterFragment"
+            app:destination="@id/searchWithWriterFragment" />
+    </fragment>
+    <fragment
+        android:id="@+id/searchWithISBNFragment"
+        android:name="com.montismobile.booklibrary.search.SearchWithISBNFragment"
+        android:label="SearchWithISBNFragment" >
+        <action
+            android:id="@+id/action_searchWithISBNFragment_to_bookListFragment"
+            app:destination="@id/bookListFragment"
+            app:popUpTo="@id/bookListFragment"
+            app:popUpToInclusive="false" />
+    </fragment>
+    <fragment
+        android:id="@+id/searchWithTitleFragment"
+        android:name="com.montismobile.booklibrary.search.SearchWithTitleFragment"
+        android:label="SearchWithTitleFragment" >
+        <action
+            android:id="@+id/action_searchWithTitleFragment_to_bookListFragment"
+            app:destination="@id/bookListFragment"
+            app:popUpTo="@id/bookListFragment"
+            app:popUpToInclusive="false" />
+    </fragment>
+    <fragment
+        android:id="@+id/searchWithWriterFragment"
+        android:name="com.montismobile.booklibrary.search.SearchWithWriterFragment"
+        android:label="SearchWithWriterFragment" >
+        <argument
+            android:name="writer_name"
+            app:argType="string"
+            android:defaultValue="" />
+        <action
+            android:id="@+id/action_searchWithWriterFragment_to_bookListFragment"
+            app:destination="@id/bookListFragment"
+            app:popUpTo="@id/bookListFragment"
+            app:popUpToInclusive="false" />
+    </fragment>
+    <fragment
+        android:id="@+id/getISBNFragment"
+        android:name="com.montismobile.booklibrary.search.GetISBNFragment"
+        android:label="GetISBNFragment" >
+        <action
+            android:id="@+id/action_getISBNFragment_to_bookFragment"
+            app:destination="@id/bookFragment"
+            app:popUpTo="@id/bookListFragment"
+            app:popUpToInclusive="false" />
+    </fragment>
+</navigation>

@@ -48,6 +48,7 @@
     <string name="by_date_of_buy">By Date Of Buy</string>
     <string name="by_title">By Title</string>
     <string name="by_writer">By Writer</string>
-    <string name="title_name">Title Name(Full Or Part)</string>
+    <string name="title_name">TITLE NAME(Full Or Part)</string>
     <string name="waitForLoading">Please wait for loading.</string>
+    <string name="book_date_of_read_label">DATE OF READ</string>
 </resources>

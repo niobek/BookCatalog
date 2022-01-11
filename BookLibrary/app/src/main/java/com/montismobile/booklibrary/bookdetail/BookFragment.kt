@@ -18,15 +18,16 @@ import com.bumptech.glide.request.RequestOptions
 import com.montismobile.booklibrary.R
 import com.montismobile.booklibrary.databinding.FragmentBookBinding
 import com.montismobile.booklibrary.main.Book
+import com.montismobile.booklibrary.main.DATE_TYPE
 import com.montismobile.booklibrary.utils.*
 import java.util.*
 
 private const val TAG = "BookFragment"
-private const val DIALOG_DATE = "DialogDate"
+private const val DIALOG_DATE_OF_BUY = "DialogDate"
 const val REQUEST_DATE =  "Date"
 const val DATE_CHOOSEN = "DateChoosen"
-const val REQUEST_TIME = "Time"
-const val TIME_CHOOSEN = "TimeChoosen"
+const val DIALOG_DATE_OF_READ = "DialogDateOfRead"
+const val DATE_TYPE_CHOOSEN = "DateTypeChoosen"
 
 class BookFragment: Fragment() {
 
@@ -73,7 +74,13 @@ class BookFragment: Fragment() {
 
         parentFragmentManager.setFragmentResultListener(REQUEST_DATE, viewLifecycleOwner,{ requestKey, bundle->
             val date = bundle.getSerializable(DATE_CHOOSEN) as Date
-            book.dateOfBuy = date
+            val date_type = bundle.getSerializable(DATE_TYPE_CHOOSEN) as DATE_TYPE
+            if (date_type == DATE_TYPE.BUY) {
+                book.dateOfBuy = date
+            } else if (date_type == DATE_TYPE.READ)
+            {
+                book.dateOfRead = date
+            }
             bookViewModel.saveBook(book)
         })
 
@@ -127,7 +134,7 @@ class BookFragment: Fragment() {
                 this.book = book
 
             Glide.with(binding.bookPhoto.context)
-                .load(book?.coverPicture)
+                .load(book.coverPicture)
                 .apply(
                     RequestOptions()
                     .placeholder(R.drawable.ic_baseline_refresh_24)).into(binding.bookPhoto)
@@ -143,7 +150,7 @@ class BookFragment: Fragment() {
                     bookViewModel.getBookInfoFromServer(bookISBNNumber)
                 } else {
 
-                        book = t!!
+                        book = t
                         bookViewModel.loadBook(book.id)
                         Toast.makeText(
                             context,
@@ -241,9 +248,14 @@ class BookFragment: Fragment() {
         binding.bookWriterEdittext.addTextChangedListener(witerWatch)
         binding.bookNotesEdittext.addTextChangedListener(notesWatch)
         binding.bookIsbnEdittext.addTextChangedListener(isbnWatch)
-        binding.bookDateButton.setOnClickListener{
-            DatePickerFragment.newInstance(book.dateOfBuy).apply {
-                show(this@BookFragment.parentFragmentManager, DIALOG_DATE) }
+        binding.bookDateOfBuyButton.setOnClickListener{
+            DatePickerFragment.newInstance(book.dateOfBuy, DATE_TYPE.BUY).apply {
+                show(this@BookFragment.parentFragmentManager, DIALOG_DATE_OF_BUY) }
+        }
+        binding.bookDateOfReadButton.setOnClickListener {
+            DatePickerFragment.newInstance(book.dateOfRead, DATE_TYPE.READ).apply {
+                show(this@BookFragment.parentFragmentManager, DIALOG_DATE_OF_READ)
+            }
         }
 
     }

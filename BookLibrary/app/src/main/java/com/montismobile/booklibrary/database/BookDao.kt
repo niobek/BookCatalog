@@ -31,11 +31,11 @@ interface BookDao {
     fun getBooksWithWriter(writer:String):LiveData<List<Book>>
 
     @Update
-    fun updateBook(book: Book)
+    suspend fun updateBook(book: Book)
 
-    @Insert
-    fun addBook(book: Book)
+    @Insert (onConflict = OnConflictStrategy.REPLACE)
+    suspend fun addBook(book: Book)
 
     @Delete
-    fun deleteBook(book:Book)
+    suspend fun deleteBook(book:Book)
 }

@@ -2,19 +2,22 @@ package com.montismobile.booklibrary.catalog
 
 import androidx.lifecycle.*
 import com.montismobile.booklibrary.main.Book
-import com.montismobile.booklibrary.database.BookRepository
+import com.montismobile.booklibrary.repo.BookRepository
 import com.montismobile.booklibrary.main.SORT_TYPE
 import com.montismobile.booklibrary.main.SEARCH_TYPE
+import dagger.hilt.android.lifecycle.HiltViewModel
+import javax.inject.Inject
 
+@HiltViewModel
+class BookListViewModel @Inject constructor(private val repository: BookRepository)
+: ViewModel() {
 
-class BookListViewModel: ViewModel() {
-
-    private val repository = BookRepository.get()
     private val filterLiveData = MutableLiveData<SEARCH_TYPE>()
     private val orderLiveData = MutableLiveData(SORT_TYPE.NONE)
     private var filterKey: String = ""
 
     val filteredBookList: LiveData<List<Book>> =
+
         Transformations.switchMap(filterLiveData) { filter ->
             when (filter) {
                 SEARCH_TYPE.ISBN ->
@@ -33,7 +36,7 @@ class BookListViewModel: ViewModel() {
         repository.getBooksBySort(order)
     }
 
-    val bookListLiveData = MediatorLiveData<List<Book>>()
+    val bookListLiveData = MediatorLiveData<List<Book>?>()
 
     init {
         bookListLiveData.addSource(filteredBookList) { bookList->

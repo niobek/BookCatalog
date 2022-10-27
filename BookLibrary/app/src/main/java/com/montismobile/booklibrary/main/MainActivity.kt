@@ -2,20 +2,16 @@ package com.montismobile.booklibrary.main
 
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
-import android.util.Log
 import androidx.databinding.DataBindingUtil
 import androidx.navigation.findNavController
 import androidx.navigation.ui.NavigationUI
 import com.montismobile.booklibrary.R
-import com.montismobile.booklibrary.bookdetail.BookFragment
-import com.montismobile.booklibrary.catalog.BookListFragment
-import com.montismobile.booklibrary.catalog.BookListFragmentDirections
 import com.montismobile.booklibrary.databinding.ActivityMainBinding
-import com.montismobile.booklibrary.search.*
-import java.util.*
+import dagger.hilt.android.AndroidEntryPoint
 
 private const val TAG = "MainActivity"
 
+@AndroidEntryPoint
 class MainActivity : AppCompatActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -24,6 +20,8 @@ class MainActivity : AppCompatActivity() {
         val navController = this.findNavController(R.id.navHostFragment)
         NavigationUI.setupActionBarWithNavController(this, navController)
         supportActionBar?.setTitle(getString(R.string.book_catalog))
+        supportActionBar?.setIcon(R.drawable.ic_book_logo_24)
+        supportActionBar?.setDisplayShowHomeEnabled(true)
     }
 
     override fun onSupportNavigateUp(): Boolean {

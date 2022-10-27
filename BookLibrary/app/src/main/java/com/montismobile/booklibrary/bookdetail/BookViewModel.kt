@@ -2,14 +2,17 @@ package com.montismobile.booklibrary.bookdetail
 
 
 import androidx.lifecycle.*
-import com.montismobile.booklibrary.database.BookRepository
 import com.montismobile.booklibrary.main.Book
+import com.montismobile.booklibrary.repo.BaseRepository
+import dagger.hilt.android.lifecycle.HiltViewModel
 import kotlinx.coroutines.launch
 import java.util.*
+import javax.inject.Inject
 
-class BookViewModel : ViewModel() {
+@HiltViewModel
+class BookViewModel @Inject constructor(private val repository : BaseRepository,
+) : ViewModel() {
 
-    private val repository = BookRepository.get()
     private val _bookLiveData = MutableLiveData<UUID>()
     private val _bookISBNLiveData = MutableLiveData<String>()
     private val _responseToBookRequest = MutableLiveData<Boolean>()
@@ -48,11 +51,16 @@ class BookViewModel : ViewModel() {
 
     fun saveBook(book: Book)
     {
-        repository.updateBook(book)
+        viewModelScope.launch{
+            repository.updateBook(book)
+        }
+
     }
 
     fun deleteBook(book:Book) {
-        repository.deleteBook(book)
+        viewModelScope.launch {
+            repository.deleteBook(book)
+        }
     }
 
     fun getBookInfoFromServer(s: String) {
@@ -75,11 +83,12 @@ class BookViewModel : ViewModel() {
         return "ISBN\u003A$tempFormat"
     }
 
-
     fun getNewBook() {
         if (_bookLiveData.value == null) {
             val book = Book()
-            repository.addBook(book)
+            viewModelScope.launch {
+                repository.addBook(book)
+            }
             _bookLiveData.value = book.id
         }
     }

@@ -4,8 +4,9 @@ package com.montismobile.booklibrary.bookdetail
 import android.os.Bundle
 import android.text.Editable
 import android.text.TextWatcher
+import android.text.method.ScrollingMovementMethod
 import android.view.*
-import android.widget.*
+import android.widget.Toast
 import androidx.appcompat.app.AppCompatActivity
 import androidx.databinding.DataBindingUtil
 import androidx.fragment.app.Fragment
@@ -19,7 +20,8 @@ import com.montismobile.booklibrary.R
 import com.montismobile.booklibrary.databinding.FragmentBookBinding
 import com.montismobile.booklibrary.main.Book
 import com.montismobile.booklibrary.main.DATE_TYPE
-import com.montismobile.booklibrary.utils.*
+import com.montismobile.booklibrary.utils.DatePickerFragment
+import dagger.hilt.android.AndroidEntryPoint
 import java.util.*
 
 private const val TAG = "BookFragment"
@@ -29,25 +31,22 @@ const val DATE_CHOOSEN = "DateChoosen"
 const val DIALOG_DATE_OF_READ = "DialogDateOfRead"
 const val DATE_TYPE_CHOOSEN = "DateTypeChoosen"
 
-class BookFragment: Fragment() {
-
+@AndroidEntryPoint
+class BookFragment : Fragment() {
     private lateinit var book:Book
     private lateinit var binding:FragmentBookBinding
     private var bookISBNNumber = ""
     private var bookId = ""
 
-    private val bookViewModel: BookViewModel by lazy {
-        ViewModelProvider(this).get(BookViewModel::class.java)
-    }
+    lateinit var bookViewModel: BookViewModel
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         val args:BookFragmentArgs by navArgs()
         bookISBNNumber = args.isbnNumber
         bookId = args.bookId
-        loadBookInfo()
-        setHasOptionsMenu(true)
 
+        setHasOptionsMenu(true)
     }
 
     private fun loadBookInfo() {
@@ -60,17 +59,13 @@ class BookFragment: Fragment() {
         }
     }
 
-      override fun onCreateView(
+    override fun onCreateView(
         inflater: LayoutInflater,
         container: ViewGroup?,
         savedInstanceState: Bundle?
     ): View? {
 
         binding = DataBindingUtil.inflate(inflater,R.layout.fragment_book, container, false)
-        binding.lifecycleOwner = this
-        binding.viewModel = bookViewModel
-
-        configureUI()
 
         parentFragmentManager.setFragmentResultListener(REQUEST_DATE, viewLifecycleOwner,{ requestKey, bundle->
             val date = bundle.getSerializable(DATE_CHOOSEN) as Date
@@ -130,46 +125,50 @@ class BookFragment: Fragment() {
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
 
-        bookViewModel.bookLiveData.observe(viewLifecycleOwner, Observer{ book-> book?.let {
-                this.book = book
+        bookViewModel = ViewModelProvider(this).get(BookViewModel::class.java)
+
+        binding.lifecycleOwner = this
+        binding.viewModel = bookViewModel
+        loadBookInfo()
+        configureUI()
+        bookViewModel.bookLiveData?.observe(viewLifecycleOwner, Observer{ book-> book?.let {
+            this.book = book
 
             Glide.with(binding.bookPhoto.context)
                 .load(book.coverPicture)
                 .apply(
                     RequestOptions()
-                    .placeholder(R.drawable.ic_baseline_refresh_24)).into(binding.bookPhoto)
+                        .placeholder(R.drawable.ic_baseline_refresh_24)).into(binding.bookPhoto)
 
         }
         })
 
-        bookViewModel.bookISBNLiveData.observe(viewLifecycleOwner, object:Observer<Book?>{
+        bookViewModel.bookISBNLiveData?.observe(viewLifecycleOwner, object:Observer<Book?>{
             override fun onChanged(t: Book?) {
-                if (t == null)
-                {
+                if (t == null) {
                     book = Book()
                     bookViewModel.getBookInfoFromServer(bookISBNNumber)
                 } else {
 
-                        book = t
-                        bookViewModel.loadBook(book.id)
-                        Toast.makeText(
-                            context,
-                            getString(R.string.isbn_already_added),
-                            Toast.LENGTH_LONG
-                        )
-                            .show()
+                    book = t
+                    bookViewModel.loadBook(book.id)
+                    Toast.makeText(
+                        context,
+                        getString(R.string.isbn_already_added),
+                        Toast.LENGTH_LONG
+                    )
+                        .show()
 
                 }
-                bookViewModel.bookISBNLiveData.removeObserver(this)
+                bookViewModel.bookISBNLiveData!!.removeObserver(this)
             }
 
         })
 
 
-        bookViewModel.responseToBookRequest.observe(viewLifecycleOwner, Observer { response->
+        bookViewModel.responseToBookRequest?.observe(viewLifecycleOwner, Observer { response->
 
-            if(!response)
-            {
+            if(!response) {
                 Toast.makeText(this.context, getString(R.string.isbn_response_error),Toast.LENGTH_LONG).show()
                 bookViewModel.clearResponseFlag()
             }
@@ -185,12 +184,15 @@ class BookFragment: Fragment() {
     override fun onStart() {
         super.onStart()
 
+        binding.bookNotesEdittext.movementMethod = ScrollingMovementMethod()
+
         var titleWatcher = object: TextWatcher {
             override fun beforeTextChanged(s: CharSequence?, start: Int, count: Int, after: Int) {
 
             }
 
             override fun onTextChanged(s: CharSequence?, start: Int, before: Int, count: Int) {
+
                 book.title = s.toString()
             }
 

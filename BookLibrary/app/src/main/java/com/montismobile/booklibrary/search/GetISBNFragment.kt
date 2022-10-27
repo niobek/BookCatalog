@@ -26,11 +26,14 @@ import com.google.mlkit.vision.text.TextRecognition
 import com.montismobile.booklibrary.R
 import com.montismobile.booklibrary.databinding.FragmentGetIsbnBinding
 import com.montismobile.booklibrary.utils.getBitmapFromUri
+import dagger.hilt.android.AndroidEntryPoint
 import java.io.File
 import java.util.concurrent.Executors
 
 private const val REQUEST_PHOTO = 3
 private const val TAG = "GetISBNFragment"
+
+
 class GetISBNFragment : Fragment() {
 
     private lateinit var binding:FragmentGetIsbnBinding

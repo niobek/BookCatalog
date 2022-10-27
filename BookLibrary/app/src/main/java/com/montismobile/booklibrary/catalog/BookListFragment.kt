@@ -22,9 +22,11 @@ import com.montismobile.booklibrary.databinding.FragmentBookListBinding
 import com.montismobile.booklibrary.main.Book
 import com.montismobile.booklibrary.main.SORT_TYPE
 import com.montismobile.booklibrary.main.SEARCH_TYPE
+import dagger.hilt.android.AndroidEntryPoint
 
 private const val TAG = "BookListFragment"
 
+@AndroidEntryPoint
 class BookListFragment:Fragment() {
 
     private var bookAdapter: BookAdapter = BookAdapter(emptyList<Book>())
@@ -175,44 +177,7 @@ class BookListFragment:Fragment() {
         bookAdapter.submitList(books)
 
     }
-
-    private class DiffCallback: DiffUtil.ItemCallback<Book>() {
-        override fun areItemsTheSame(oldItem: Book, newItem: Book): Boolean {
-            val result = (oldItem.id == newItem.id)
-            return result
-        }
-
-        override fun areContentsTheSame(oldItem: Book, newItem: Book): Boolean {
-            val result = ((oldItem.title == newItem.title)
-                    && (oldItem.writer == newItem.writer))
-            return result
-        }
-    }
-
-    private inner class BookHolder(val bindingItem: BookListItemBinding) : RecyclerView.ViewHolder(bindingItem.root), View.OnClickListener
-    {
-        private lateinit var book: Book
-
-        init {
-            itemView.setOnClickListener(this)
-        }
-        fun bind(book: Book?)
-        {
-            if (book != null) {
-                this.book = book
-            }
-            Glide.with(bindingItem.bookImage.context)
-                .load(book?.coverPicture)
-                .apply(RequestOptions()
-                .placeholder(R.drawable.ic_baseline_refresh_24)).into(bindingItem.bookImage)
-            bindingItem.bookTitle.setText(book?.title)
-        }
-
-        override fun onClick(v: View?) {
-            showBookDetail(this.book.id.toString())
-        }
-    }
-
+    
     private inner class BookAdapter(var bookList: List<Book>) :androidx.recyclerview.widget.ListAdapter<Book, BookHolder>(
         DiffCallback()
     )
@@ -234,5 +199,42 @@ class BookListFragment:Fragment() {
 
     }
 
+    private inner class BookHolder(val bindingItem: BookListItemBinding) : RecyclerView.ViewHolder(bindingItem.root), View.OnClickListener
+    {
+        private lateinit var book: Book
+
+        init {
+            itemView.setOnClickListener(this)
+        }
+        fun bind(book: Book?)
+        {
+            if (book != null) {
+                this.book = book
+            }
+            Glide.with(bindingItem.bookImage.context)
+                .load(book?.coverPicture)
+                .apply(RequestOptions()
+                    .placeholder(R.drawable.ic_baseline_refresh_24)).into(bindingItem.bookImage)
+            bindingItem.bookTitle.setText(book?.title)
+        }
+
+        override fun onClick(v: View?) {
+            showBookDetail(this.book.id.toString())
+        }
+    }
+
+
+    private class DiffCallback: DiffUtil.ItemCallback<Book>() {
+        override fun areItemsTheSame(oldItem: Book, newItem: Book): Boolean {
+            val result = (oldItem.id == newItem.id)
+            return result
+        }
+
+        override fun areContentsTheSame(oldItem: Book, newItem: Book): Boolean {
+            val result = ((oldItem.title == newItem.title)
+                    && (oldItem.writer == newItem.writer))
+            return result
+        }
+    }
 
 }

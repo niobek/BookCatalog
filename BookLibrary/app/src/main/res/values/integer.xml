@@ -1,0 +1,7 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <integer name="line_number">5</integer>
+    <integer name="max_line_number">5</integer>
+    <integer name="max_note_char_number">300</integer>
+    <integer name="max_isbn_char_number">50</integer>
+</resources>

@@ -19,6 +19,7 @@
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:orientation="horizontal"
+                android:baselineAligned="false"
                 android:layout_marginStart="16dp"
                 android:layout_marginTop="16dp">
                 <LinearLayout
@@ -81,6 +82,9 @@
                 android:id="@+id/book_notes_edittext"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
+                android:lines="@integer/line_number"
+                android:maxLength="@integer/max_note_char_number"
+                android:maxLines="@integer/max_line_number"
                 android:minHeight="48dp"
                 android:text="@{viewModel.bookLiveData.notes}" />
 
@@ -96,7 +100,10 @@
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_marginEnd="4dp"
+                android:maxLength="@integer/max_isbn_char_number"
                 android:minHeight="48dp"
+                android:nestedScrollingEnabled="false"
+                android:singleLine="true"
                 android:text="@{viewModel.bookLiveData.isbn}" />
             <Button
                 android:id="@+id/get_isbn_button"

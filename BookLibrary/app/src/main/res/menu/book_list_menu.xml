@@ -2,6 +2,11 @@
 <menu xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto">
     <item
+        android:id="@+id/home_page"
+        android:icon="@drawable/ic_baseline_home_24"
+        android:title="@string/home_page"
+        app:showAsAction="ifRoom|withText"/>
+    <item
         android:id="@+id/new_book"
         android:icon="@drawable/ic_menu_add"
         android:title ="@string/new_book"

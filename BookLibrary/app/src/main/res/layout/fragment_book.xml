@@ -82,11 +82,13 @@
                 android:id="@+id/book_notes_edittext"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
+                android:gravity="start|top"
                 android:lines="@integer/line_number"
                 android:maxLength="@integer/max_note_char_number"
                 android:maxLines="@integer/max_line_number"
                 android:minHeight="48dp"
-                android:text="@{viewModel.bookLiveData.notes}" />
+                android:text="@{viewModel.bookLiveData.notes}"
+                android:textAlignment="viewStart" />
 
             <TextView
                 style="?android:listSeparatorTextViewStyle"

@@ -77,6 +77,12 @@ class BookListFragment:Fragment() {
 
     override fun onOptionsItemSelected(item: MenuItem): Boolean {
         return when (item.itemId) {
+            R.id.home_page->
+            {
+                clearSortType()
+                bookListViewModel.setSortType(SORT_TYPE.TITLE)
+                true
+            }
             R.id.new_book -> {
 
                 val action = BookListFragmentDirections.actionBookListFragmentToBookFragment()

@@ -7,19 +7,36 @@ buildscript {
         glide_version = "4.8.0"
         moshi_version = "1.8.0"
         retrofit_version = "2.9.0"
+        work_version = "2.4.0"
         room_version = "2.3.0"
         okhttp3_version = "4.9.3"
         gson_version = "2.9.0"
         glide_version = "4.8.0"
+        espresso_version = "3.1.1"
+        hilt_version = "2.38.1"
+        coreTesting_version = "2.0.0"
+        junit_version = "4.12"
+        truth_version = "0.42"
+        testExtJunit_version = "1.1.0"
+        uiAutomator_version = "2.2.0"
+        work_version = "2.7.1"
+        coroutines_test_version = "1.4.2"
+        coroutines_version = "1.4.2"
+        lifecycle_version = "2.2.0"
+        material_design_version = "1.4.0"
+        activity_ktx_version = "1.1.0"
+        fragment_test_version = "1.4.1"
+
     }
     repositories {
         google()
         jcenter()
     }
     dependencies {
-        classpath "com.android.tools.build:gradle:4.1.0"
+        classpath 'com.android.tools.build:gradle:7.0.0'
         classpath "org.jetbrains.kotlin:kotlin-gradle-plugin:$kotlin_version"
         classpath("androidx.navigation:navigation-safe-args-gradle-plugin:$navigation_version")
+        classpath("com.google.dagger:hilt-android-gradle-plugin:$hilt_version")
 
         // NOTE: Do not place your application dependencies here; they belong
         // in the individual module build.gradle files

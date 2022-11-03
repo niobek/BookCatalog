@@ -7,15 +7,16 @@
         android:required ="false"/>
 
     <application
-        android:allowBackup="true"
-        android:name="com.montismobile.booklibrary.main.BookLibraryApplication"
+        android:allowBackup="false"
+        android:name=".main.BookLibraryApplication"
         android:icon="@mipmap/ic_launcher"
         android:usesCleartextTraffic="true"
         android:label="@string/app_name"
         android:roundIcon="@mipmap/ic_launcher_round"
         android:supportsRtl="true"
         android:theme="@style/Theme.CrimeAppClone">
-        <activity android:name="com.montismobile.booklibrary.main.MainActivity">
+        <activity android:name=".main.MainActivity"
+            android:exported="true">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
 

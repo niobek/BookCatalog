@@ -1,5 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
-<layout xmlns:app="http://schemas.android.com/apk/res-auto"
+<layout xmlns:tools="http://schemas.android.com/tools"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:android="http://schemas.android.com/apk/res/android">
     <data>
         <variable
@@ -10,137 +11,222 @@
         android:layout_width="match_parent"
         android:layout_height="match_parent"
         android:fillViewport="true">
-        <LinearLayout
+
+        <androidx.constraintlayout.motion.widget.MotionLayout
+            android:id="@+id/constraintLayout"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
+            android:layout_margin="20dp"
             android:orientation="vertical"
-            android:layout_margin= "20dp">
-            <LinearLayout
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:orientation="horizontal"
-                android:baselineAligned="false"
-                android:layout_marginStart="16dp"
-                android:layout_marginTop="16dp">
-                <LinearLayout
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:orientation="vertical">
-                    <ImageView
-                        android:id="@+id/book_photo"
-                        android:layout_width="150dp"
-                        android:layout_height="120dp"
-                        android:scaleType="fitCenter"
-                        android:cropToPadding = "true"
-                        android:background="@android:color/background_light"
-                        app:imageAddress="@{viewModel.bookLiveData}"/>
-                </LinearLayout>
-                <LinearLayout
-                    android:orientation="vertical"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:layout_weight="1">
+            app:layoutDescription="@xml/fragment_book_scene">
 
-                    <TextView
-                        style="?android:listSeparatorTextViewStyle"
-                        android:layout_width="match_parent"
-                        android:layout_height="wrap_content"
-                        android:text="@string/book_title_label"
-                        android:textStyle="bold" />
-
-                    <EditText
-                        android:id="@+id/book_title_edittext"
-                        android:layout_width="match_parent"
-                        android:layout_height="wrap_content"
-                        android:minHeight="48dp"
-                        android:text="@{viewModel.bookLiveData.title}" />
-                </LinearLayout>
-            </LinearLayout>
+            <ImageView
+                android:id="@+id/book_photo"
+                android:layout_width="150dp"
+                android:layout_height="150dp"
+                android:layout_marginStart="8dp"
+                android:layout_marginTop="16dp"
+                android:background="@android:color/background_light"
+                android:cropToPadding="true"
+                android:scaleType="fitCenter"
+                app:imageAddress="@{viewModel.bookLiveData}"
+                app:layout_constraintBottom_toBottomOf="parent"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintHorizontal_bias="0.0"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toTopOf="parent"
+                app:layout_constraintVertical_bias="0.0" />
 
             <TextView
+                android:id="@+id/textViewTitleLabel"
                 style="?android:listSeparatorTextViewStyle"
-                android:layout_width="match_parent"
+                android:layout_width="0dp"
                 android:layout_height="wrap_content"
+                android:layout_marginStart="8dp"
+                android:layout_marginTop="16dp"
+                android:text="@string/book_title_label"
+                android:textStyle="bold"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toEndOf="@id/book_photo"
+                app:layout_constraintTop_toTopOf="parent" />
+
+            <EditText
+                android:id="@+id/book_title_edittext"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="8dp"
+                android:layout_marginTop="16dp"
+                android:minHeight="48dp"
+                android:text="@{viewModel.bookLiveData.title}"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toEndOf="@id/book_photo"
+                app:layout_constraintTop_toBottomOf="@+id/textViewTitleLabel" />
+
+            <TextView
+                android:id="@+id/textViewWriterLabel"
+                style="?android:listSeparatorTextViewStyle"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="16dp"
                 android:text="@string/book_writer_label"
-                android:textStyle="bold" />
+                android:textStyle="bold"
+                app:layout_constraintBottom_toBottomOf="parent"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="@id/book_photo"
+                app:layout_constraintTop_toBottomOf="@id/book_photo"
+                app:layout_constraintVertical_bias="0.0" />
 
             <EditText
                 android:id="@+id/book_writer_edittext"
-                android:layout_width="match_parent"
+                android:layout_width="0dp"
                 android:layout_height="wrap_content"
+                android:layout_marginTop="16dp"
                 android:minHeight="48dp"
-                android:text="@{viewModel.bookLiveData.writer}" />
+                android:text="@{viewModel.bookLiveData.writer}"
+                app:layout_constraintBottom_toBottomOf="parent"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="@id/textViewWriterLabel"
+                app:layout_constraintTop_toBottomOf="@id/textViewWriterLabel"
+                app:layout_constraintVertical_bias="0.0" />
 
             <TextView
+                android:id="@+id/textViewNotesLabel"
                 style="?android:listSeparatorTextViewStyle"
-                android:layout_width="match_parent"
+                android:layout_width="0dp"
                 android:layout_height="wrap_content"
+                android:layout_marginTop="16dp"
                 android:text="@string/book_notes_label"
-                android:textStyle="bold" />
+                android:textStyle="bold"
+                app:layout_constraintBottom_toBottomOf="parent"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="@id/book_writer_edittext"
+                app:layout_constraintTop_toBottomOf="@id/book_writer_edittext"
+                app:layout_constraintVertical_bias="0.0" />
 
             <EditText
                 android:id="@+id/book_notes_edittext"
-                android:layout_width="match_parent"
+                android:layout_width="0dp"
                 android:layout_height="wrap_content"
+                android:layout_marginTop="16dp"
                 android:gravity="start|top"
                 android:lines="@integer/line_number"
                 android:maxLength="@integer/max_note_char_number"
                 android:maxLines="@integer/max_line_number"
                 android:minHeight="48dp"
                 android:text="@{viewModel.bookLiveData.notes}"
-                android:textAlignment="viewStart" />
+                android:textAlignment="viewStart"
+                app:layout_constraintBottom_toBottomOf="parent"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="@id/textViewNotesLabel"
+                app:layout_constraintTop_toBottomOf="@id/textViewNotesLabel"
+                app:layout_constraintVertical_bias="0.0" />
 
             <TextView
+                android:id="@+id/textViewISBNLabel"
                 style="?android:listSeparatorTextViewStyle"
-                android:layout_width="match_parent"
+                android:layout_width="0dp"
                 android:layout_height="wrap_content"
+                android:layout_marginTop="16dp"
                 android:text="@string/isbn"
-                android:textStyle="bold" />
+                android:textStyle="bold"
+                app:layout_constraintBottom_toBottomOf="parent"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="@id/book_notes_edittext"
+                app:layout_constraintTop_toBottomOf="@id/book_notes_edittext"
+                app:layout_constraintVertical_bias="0.0" />
 
             <EditText
                 android:id="@+id/book_isbn_edittext"
-                android:layout_width="match_parent"
+                android:layout_width="0dp"
                 android:layout_height="wrap_content"
-                android:layout_marginEnd="4dp"
+                android:layout_marginTop="16dp"
                 android:maxLength="@integer/max_isbn_char_number"
                 android:minHeight="48dp"
                 android:nestedScrollingEnabled="false"
                 android:singleLine="true"
-                android:text="@{viewModel.bookLiveData.isbn}" />
+                android:text="@{viewModel.bookLiveData.isbn}"
+                app:layout_constraintBottom_toBottomOf="parent"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="@id/textViewISBNLabel"
+                app:layout_constraintTop_toBottomOf="@id/textViewISBNLabel"
+                app:layout_constraintVertical_bias="0.0" />
+
             <Button
                 android:id="@+id/get_isbn_button"
-                android:layout_width="match_parent"
+                android:layout_width="0dp"
                 android:layout_height="wrap_content"
-                android:text="@string/get_ISBN"/>
+                android:layout_marginTop="16dp"
+                android:text="@string/get_ISBN"
+                app:layout_constraintBottom_toBottomOf="parent"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="@id/book_isbn_edittext"
+                app:layout_constraintTop_toBottomOf="@id/book_isbn_edittext"
+                app:layout_constraintVertical_bias="0.0" />
 
             <TextView
+                android:id="@+id/textViewDateOfBuyLabel"
                 style="?android:listSeparatorTextViewStyle"
-                android:layout_width="match_parent"
+                android:layout_width="0dp"
                 android:layout_height="wrap_content"
+                android:layout_marginTop="16dp"
                 android:text="@string/book_date_of_buy_label"
-                android:textStyle="bold" />
+                android:textStyle="bold"
+                app:layout_constraintBottom_toBottomOf="parent"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="@id/get_isbn_button"
+                app:layout_constraintTop_toBottomOf="@id/get_isbn_button"
+                app:layout_constraintVertical_bias="0.0" />
+
             <Button
-                android:id = "@+id/book_date_of_buy_button"
-                android:layout_width="match_parent"
+                android:id="@+id/book_date_of_buy_button"
+                android:layout_width="0dp"
                 android:layout_height="wrap_content"
-                app:formattedDate="@{viewModel.bookLiveData.dateOfBuy}"/>
+                android:layout_marginTop="16dp"
+                app:formattedDate="@{viewModel.bookLiveData.dateOfBuy}"
+                app:layout_constraintBottom_toBottomOf="parent"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="@id/textViewDateOfBuyLabel"
+                app:layout_constraintTop_toBottomOf="@id/textViewDateOfBuyLabel"
+                app:layout_constraintVertical_bias="0.0" />
+
             <TextView
+                android:id="@+id/textViewDateOfReadLabel"
                 style="?android:listSeparatorTextViewStyle"
-                android:layout_width="match_parent"
+                android:layout_width="0dp"
                 android:layout_height="wrap_content"
+                android:layout_marginTop="16dp"
                 android:text="@string/book_date_of_read_label"
-                android:textStyle="bold" />
+                android:textStyle="bold"
+                app:layout_constraintBottom_toBottomOf="parent"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="@id/book_date_of_buy_button"
+                app:layout_constraintTop_toBottomOf="@id/book_date_of_buy_button"
+                app:layout_constraintVertical_bias="0.0" />
+
             <Button
-                android:id = "@+id/book_date_of_read_button"
-                android:layout_width="match_parent"
+                android:id="@+id/book_date_of_read_button"
+                android:layout_width="0dp"
                 android:layout_height="wrap_content"
-                app:formattedDate="@{viewModel.bookLiveData.dateOfRead}"/>
+                android:layout_marginTop="16dp"
+                app:formattedDate="@{viewModel.bookLiveData.dateOfRead}"
+                app:layout_constraintBottom_toBottomOf="parent"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="@id/textViewDateOfReadLabel"
+                app:layout_constraintTop_toBottomOf="@id/textViewDateOfReadLabel"
+                app:layout_constraintVertical_bias="0.0" />
+
             <Button
                 android:id="@+id/book_save_button"
-                android:layout_width="match_parent"
+                android:layout_width="0dp"
                 android:layout_height="wrap_content"
-                android:layout_marginBottom="20dp"
-                android:text="@string/save"/>
-        </LinearLayout>
+                android:layout_marginTop="16dp"
+                android:layout_marginBottom="32dp"
+                android:text="@string/save"
+                app:layout_constraintBottom_toBottomOf="parent"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="@id/book_date_of_read_button"
+                app:layout_constraintTop_toBottomOf="@id/book_date_of_read_button"
+                app:layout_constraintVertical_bias="0.0" />
+        </androidx.constraintlayout.motion.widget.MotionLayout>
     </ScrollView>
 </layout>

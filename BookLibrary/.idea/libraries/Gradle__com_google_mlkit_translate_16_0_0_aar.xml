@@ -1,0 +1,13 @@
+<component name="libraryTable">
+  <library name="Gradle: com.google.mlkit:translate:16.0.0@aar">
+    <CLASSES>
+      <root url="file://$USER_HOME$/.gradle/caches/transforms-3/25ef6d47cba92d6a680a863a9d2658ba/transformed/jetified-translate-16.0.0/res" />
+      <root url="file://$USER_HOME$/.gradle/caches/transforms-3/25ef6d47cba92d6a680a863a9d2658ba/transformed/jetified-translate-16.0.0/AndroidManifest.xml" />
+      <root url="jar://$USER_HOME$/.gradle/caches/transforms-3/25ef6d47cba92d6a680a863a9d2658ba/transformed/jetified-translate-16.0.0/jars/classes.jar!/" />
+    </CLASSES>
+    <JAVADOC>
+      <root url="jar://$USER_HOME$/.gradle/caches/modules-2/files-2.1/com.google.mlkit/translate/16.0.0/db09c63d782a6c998e97c5ddc377a84252b7076f/translate-16.0.0-javadoc.jar!/" />
+    </JAVADOC>
+    <SOURCES />
+  </library>
+</component>

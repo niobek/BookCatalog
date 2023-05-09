@@ -1,0 +1,28 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project version="4">
+  <component name="DesignSurface">
+    <option name="filePathToZoomLevelMap">
+      <map>
+        <entry key="..\:/GitRepos/BookCatalog/BookLibrary/app/src/main/res/drawable/ic_baseline_delete_24.xml" value="0.188" />
+        <entry key="..\:/GitRepos/BookCatalog/BookLibrary/app/src/main/res/drawable/ic_baseline_home_24.xml" value="0.129" />
+        <entry key="..\:/GitRepos/BookCatalog/BookLibrary/app/src/main/res/drawable/ic_baseline_menu_book_24.xml" value="0.1015" />
+        <entry key="..\:/GitRepos/BookCatalog/BookLibrary/app/src/main/res/drawable/ic_book_logo_24.xml" value="0.188" />
+        <entry key="..\:/GitRepos/BookCatalog/BookLibrary/app/src/main/res/drawable/ic_launcher_background.xml" value="0.129" />
+        <entry key="..\:/GitRepos/BookCatalog/BookLibrary/app/src/main/res/drawable/ic_launcher_foreground.xml" value="0.188" />
+        <entry key="..\:/GitRepos/BookCatalog/BookLibrary/app/src/main/res/layout/book_list_item.xml" value="0.13020833333333334" />
+        <entry key="..\:/GitRepos/BookCatalog/BookLibrary/app/src/main/res/layout/fragment_book.xml" value="0.36666666666666664" />
+        <entry key="..\:/GitRepos/BookCatalog/BookLibrary/app/src/main/res/layout/fragment_book_list.xml" value="0.2223731884057971" />
+        <entry key="..\:/GitRepos/BookCatalog/BookLibrary/app/src/main/res/layout/fragment_get_isbn.xml" value="0.13020833333333334" />
+        <entry key="..\:/GitRepos/BookCatalog/BookLibrary/app/src/main/res/menu/book_list_menu.xml" value="0.13020833333333334" />
+        <entry key="..\:/GitRepos/BookCatalog/BookLibrary/app/src/main/res/menu/book_menu.xml" value="0.2234375" />
+        <entry key="..\:/GitRepos/BookCatalog/BookLibrary/app/src/main/res/mipmap-anydpi-v26/ic_launcher.xml" value="0.188" />
+      </map>
+    </option>
+  </component>
+  <component name="ProjectRootManager" version="2" languageLevel="JDK_11" default="true" project-jdk-name="11" project-jdk-type="JavaSDK">
+    <output url="file://$PROJECT_DIR$/build/classes" />
+  </component>
+  <component name="ProjectType">
+    <option name="id" value="Android" />
+  </component>
+</project>

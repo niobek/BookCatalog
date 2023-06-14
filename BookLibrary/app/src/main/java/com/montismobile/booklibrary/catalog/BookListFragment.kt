@@ -83,13 +83,6 @@ class BookListFragment:Fragment() {
                 bookListViewModel.setSortType(SORT_TYPE.TITLE)
                 true
             }
-            R.id.new_book -> {
-
-                val action = BookListFragmentDirections.actionBookListFragmentToBookFragment()
-                this.findNavController().navigate(action)
-                true
-
-            }
             R.id.search_book->{
                 clearSortType()
                 this.findNavController().navigate(R.id.action_bookListFragment_to_searchFragment)
@@ -130,7 +123,10 @@ class BookListFragment:Fragment() {
             Configuration.ORIENTATION_LANDSCAPE->GridLayoutManager(context, 3)
             else-> GridLayoutManager(context, 2)
         }
-
+        binding.addBookFAB.setOnClickListener {
+            val action = BookListFragmentDirections.actionBookListFragmentToAddBookFragment()
+            this.findNavController().navigate(action)
+        }
         bookAdapter.submitList(emptyList())
         binding.bookRecyclerView.adapter = bookAdapter
 

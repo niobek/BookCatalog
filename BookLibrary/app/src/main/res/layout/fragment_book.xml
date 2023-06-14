@@ -58,6 +58,8 @@
                 android:layout_marginTop="16dp"
                 android:minHeight="48dp"
                 android:text="@{viewModel.bookLiveData.title}"
+                android:minLines="2"
+                android:maxLines="3"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintStart_toEndOf="@id/book_photo"
                 app:layout_constraintTop_toBottomOf="@+id/textViewTitleLabel" />
@@ -151,18 +153,6 @@
                 app:layout_constraintTop_toBottomOf="@id/textViewISBNLabel"
                 app:layout_constraintVertical_bias="0.0" />
 
-            <Button
-                android:id="@+id/get_isbn_button"
-                android:layout_width="0dp"
-                android:layout_height="wrap_content"
-                android:layout_marginTop="16dp"
-                android:text="@string/get_ISBN"
-                app:layout_constraintBottom_toBottomOf="parent"
-                app:layout_constraintEnd_toEndOf="parent"
-                app:layout_constraintStart_toStartOf="@id/book_isbn_edittext"
-                app:layout_constraintTop_toBottomOf="@id/book_isbn_edittext"
-                app:layout_constraintVertical_bias="0.0" />
-
             <TextView
                 android:id="@+id/textViewDateOfBuyLabel"
                 style="?android:listSeparatorTextViewStyle"
@@ -173,8 +163,8 @@
                 android:textStyle="bold"
                 app:layout_constraintBottom_toBottomOf="parent"
                 app:layout_constraintEnd_toEndOf="parent"
-                app:layout_constraintStart_toStartOf="@id/get_isbn_button"
-                app:layout_constraintTop_toBottomOf="@id/get_isbn_button"
+                app:layout_constraintStart_toStartOf="@id/book_isbn_edittext"
+                app:layout_constraintTop_toBottomOf="@id/book_isbn_edittext"
                 app:layout_constraintVertical_bias="0.0" />
 
             <Button

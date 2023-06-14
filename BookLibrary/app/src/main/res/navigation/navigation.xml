@@ -1,6 +1,7 @@
 <?xml version="1.0" encoding="utf-8"?>
 <navigation xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
     android:id="@+id/navigation"
     app:startDestination="@id/bookListFragment">
 
@@ -33,6 +34,9 @@
             android:name="title"
             app:argType="string"
             android:defaultValue=""/>
+        <action
+            android:id="@+id/action_bookListFragment_to_addBookFragment"
+            app:destination="@id/addBookFragment" />
     </fragment>
     <fragment
         android:id="@+id/bookFragment"
@@ -112,5 +116,17 @@
             app:destination="@id/bookFragment"
             app:popUpTo="@id/bookListFragment"
             app:popUpToInclusive="false" />
+    </fragment>
+    <fragment
+        android:id="@+id/addBookFragment"
+        android:name="com.montismobile.booklibrary.bookdetail.AddBookFragment"
+        android:label="fragment_add_book"
+        tools:layout="@layout/fragment_add_book" >
+        <action
+            android:id="@+id/action_addBookFragment_to_getISBNFragment"
+            app:destination="@id/getISBNFragment" />
+        <action
+            android:id="@+id/action_addBookFragment_to_bookFragment"
+            app:destination="@id/bookFragment" />
     </fragment>
 </navigation>

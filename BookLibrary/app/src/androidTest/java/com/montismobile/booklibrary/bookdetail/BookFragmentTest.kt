@@ -3,12 +3,11 @@ package com.montismobile.booklibrary.bookdetail
 import android.os.Bundle
 import androidx.arch.core.executor.testing.InstantTaskExecutorRule
 import androidx.test.espresso.Espresso.onView
-import androidx.test.espresso.action.ViewActions.click
 import androidx.test.espresso.action.ViewActions.replaceText
 import androidx.test.espresso.matcher.ViewMatchers.withId
 import androidx.test.filters.MediumTest
-import com.google.common.truth.Truth.assertThat
 import com.montismobile.booklibrary.MainCoroutineRule
+import com.montismobile.booklibrary.R
 import com.montismobile.booklibrary.launchFragmentInHiltContainer
 import com.montismobile.booklibrary.repo.FakeBookRepositoryTest
 import dagger.hilt.android.testing.HiltAndroidRule
@@ -17,9 +16,6 @@ import kotlinx.coroutines.ExperimentalCoroutinesApi
 import org.junit.Before
 import org.junit.Rule
 import org.junit.Test
-import com.montismobile.booklibrary.R
-import com.montismobile.booklibrary.testutils.getOrAwaitValue
-import kotlinx.coroutines.test.runBlockingTest
 import javax.inject.Inject
 import javax.inject.Named
 

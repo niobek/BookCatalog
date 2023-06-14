@@ -52,4 +52,10 @@
     <string name="waitForLoading">Please wait for loading.</string>
     <string name="book_date_of_read_label">DATE OF READ</string>
     <string name="home_page">Home Page</string>
+    <!-- TODO: Remove or change this placeholder text -->
+    <string name="hello_blank_fragment">Hello blank fragment</string>
+    <string name="add_book_with_isbn_picture">ADD A Book WITH ISBN PICTURE</string>
+    <string name="add_book_manually">ADD A BOOK MANUALLY</string>
+    <string name="book_adding_type_question">How will you add a book to the your book list?</string>
+    <string name="add_new_book">New Book</string>
 </resources>

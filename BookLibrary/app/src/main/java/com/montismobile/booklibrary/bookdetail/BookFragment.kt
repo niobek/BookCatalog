@@ -112,14 +112,7 @@ class BookFragment : Fragment() {
             }
 
         }
-        binding.getIsbnButton.setOnClickListener {
-            this.findNavController().navigate(R.id.action_bookFragment_to_getISBNFragment)
-        }
 
-        if(bookId.isNotEmpty() || bookISBNNumber.isNotEmpty())
-        {
-            disableGetInfoFromServer()
-        }
     }
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
@@ -175,10 +168,6 @@ class BookFragment : Fragment() {
 
         })
 
-    }
-
-    private fun disableGetInfoFromServer() {
-        binding.getIsbnButton.isEnabled = false
     }
 
     override fun onStart() {

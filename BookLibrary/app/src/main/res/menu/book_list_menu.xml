@@ -7,11 +7,6 @@
         android:title="@string/home_page"
         app:showAsAction="ifRoom|withText"/>
     <item
-        android:id="@+id/new_book"
-        android:icon="@drawable/ic_menu_add"
-        android:title ="@string/new_book"
-        app:showAsAction="ifRoom|withText"/>
-    <item
         android:id="@+id/search_book"
         android:icon ="@drawable/ic_baseline_search"
         android:title="@string/search"

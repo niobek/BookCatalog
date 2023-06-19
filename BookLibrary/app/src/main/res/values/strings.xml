@@ -58,4 +58,6 @@
     <string name="add_book_manually">ADD A BOOK MANUALLY</string>
     <string name="book_adding_type_question">How will you add a book to the your book list?</string>
     <string name="add_new_book">New Book</string>
+    <string name="take_picture_of_isbn">Take a picture of your book\'s ISBN Number, please!</string>
+    <string name="isbn_number_hint">ISBN Number is on the back of your book or the second page of the book. It starts with ISBN always.</string>
 </resources>

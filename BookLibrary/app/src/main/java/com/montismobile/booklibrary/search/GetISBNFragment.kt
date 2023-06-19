@@ -141,9 +141,23 @@ class GetISBNFragment : Fragment() {
                 if (ISBNIndex != -1)
                 {
                     val indexOfNewLine = rawText.indexOf('\n',ISBNIndex)
-                    val substring = rawText.substring(ISBNIndex+4, indexOfNewLine)
+                    var substring:String = ""
+                    if (indexOfNewLine != -1) {
+                        substring = rawText.substring(ISBNIndex + 4, indexOfNewLine)
+                    } else {
+                        substring = rawText.substring(ISBNIndex + 4)
+                    }
+                    val list = substring.split(" ")
+
                     val pattern = Regex("[[0-9]+[-]+[A-Z]+[a-z]+]+")
-                    val found = pattern.find(substring, 0)
+                    var found:MatchResult? = null
+                    if (list.get(0).length >= 10) {
+                        found = pattern.find(list.get(0), 0)
+                    } else
+                    {
+                        found = pattern.find(list.get(1), 0)
+                    }
+
                     ISBNText = found?.value?:""
                 }
 

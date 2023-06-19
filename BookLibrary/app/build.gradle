@@ -13,8 +13,8 @@ android {
         applicationId "com.montismobile.booklibrary"
         minSdkVersion 21
         targetSdkVersion 31
-        versionCode 1
-        versionName "1.0"
+        versionCode 3
+        versionName "1.2"
         vectorDrawables.useSupportLibrary true
         testInstrumentationRunner "com.montismobile.booklibrary.testutils.HiltTestRunner"
         javaCompileOptions {
